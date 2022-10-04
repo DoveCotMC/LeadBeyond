@@ -9,7 +9,7 @@ public class LBItemGroup {
     public static final ItemGroup INSTANCE = new ItemGroup(LeadBeyond.MODID) {
         @Override
         public ItemStack createIcon() {
-            return ItemReg.CARD.get().getDefaultStack();
+            return ItemReg.TICKET.get().getDefaultStack();
         }
     };
 }

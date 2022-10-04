@@ -1,0 +1,20 @@
+{
+  "beep_ticket_vendor": {
+    "subtitle": "subtitles.lead_beyond.beep_ticket_vendor",
+    "sounds": [
+      "lead_beyond:beep_ticket_vendor"
+    ]
+  },
+  "beep_turnstile": {
+    "subtitle": "subtitles.lead_beyond.beep_turnstile",
+    "sounds": [
+      "lead_beyond:beep_turnstile"
+    ]
+  },
+  "ticket_out": {
+    "subtitle": "subtitles.lead_beyond.ticket_out",
+    "sounds": [
+      "lead_beyond:ticket_out"
+    ]
+  }
+}

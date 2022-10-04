@@ -4,6 +4,16 @@
   "item.lead_beyond.card": "Card",
   "item.lead_beyond.ticket": "Ticket",
 
+  "block.lead_beyond.turnstile": "Turnstile",
+  "block.lead_beyond.ticket_vendor": "Ticket Vendor",
+
+  "message.lead_beyond.set_exit.true": "Set to Exit",
+  "message.lead_beyond.set_exit.false": "Set to Entrance",
+
+  "subtitle.lead_beyond.beep_ticket_vendor": "Ticket Vendor beeps",
+  "subtitle.lead_beyond.beep_turnstile": "Turnstile beeps",
+  "subtitle.lead_beyond.ticket_out": "Ticket Vendor issues a ticket",
+
   "tooltip.lead_beyond.card.money": "Money: %s",
   "tooltip.lead_beyond.ticket.used": "Used"
 }

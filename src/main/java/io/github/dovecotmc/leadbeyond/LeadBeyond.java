@@ -1,12 +1,10 @@
 package io.github.dovecotmc.leadbeyond;
 
-import io.github.dovecotmc.leadbeyond.common.reg.ItemReg;
+import io.github.dovecotmc.leadbeyond.common.reg.*;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -24,15 +22,16 @@ public class LeadBeyond {
     public LeadBeyond() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemReg.ITEM.register(eventBus);
+        BlockReg.BLOCKS.register(eventBus);
+        SoundReg.SOUNDS.register(eventBus);
+        BlockEntityReg.BLOCK_ENTITIES.register(eventBus);
+        eventBus.addListener(this::commonSetup);
+        eventBus.addListener(LeadBeyondClient::clientSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        LOGGER.info("Initialized.");
     }
 
-    @SubscribeEvent
     public void commonSetup(final FMLCommonSetupEvent event) {
-    }
-
-    @SubscribeEvent
-    public void clientSetup(final FMLClientSetupEvent event) {
     }
 
     public static @NotNull Identifier id(String name) {
