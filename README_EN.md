@@ -3,7 +3,7 @@
 A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway server.
 
 ## Switch Language:
-**English** | [简体中文](README_ZH.md)
+**English** | [简体中文](README.md)
 
 ## Mod content:
 too lazy to translate, so do it yourself plz :)
