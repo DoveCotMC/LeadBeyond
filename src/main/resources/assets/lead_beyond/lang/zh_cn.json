@@ -1,14 +1,14 @@
 {
   "itemGroup.lead_beyond": "引向超越",
 
-  "item.lead_beyond.card": "卡",
-  "item.lead_beyond.ticket": "票",
+  "item.lead_beyond.card": "储值卡",
+  "item.lead_beyond.ticket": "单程票",
 
-  "block.lead_beyond.turnstile": "闸门",
+  "block.lead_beyond.turnstile": "闸机",
   "block.lead_beyond.ticket_vendor": "售票机",
 
-  "message.lead_beyond.set_exit.true": "设置成出口",
-  "message.lead_beyond.set_exit.false": "设置成入口",
+  "message.lead_beyond.set_exit.true": "已设置成出口",
+  "message.lead_beyond.set_exit.false": "已设置成入口",
 
   "subtitle.lead_beyond.beep_ticket_vendor": "售票机：哔——",
   "subtitle.lead_beyond.beep_turnstile": "闸门：哔——",

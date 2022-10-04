@@ -2,13 +2,13 @@
   "itemGroup.lead_beyond": "Lead Beyond",
 
   "item.lead_beyond.card": "Card",
-  "item.lead_beyond.ticket": "Ticket",
+  "item.lead_beyond.ticket": "Single Journey Ticket",
 
   "block.lead_beyond.turnstile": "Turnstile",
   "block.lead_beyond.ticket_vendor": "Ticket Vendor",
 
-  "message.lead_beyond.set_exit.true": "Set to Exit",
-  "message.lead_beyond.set_exit.false": "Set to Entrance",
+  "message.lead_beyond.set_exit.true": "Set as Exit",
+  "message.lead_beyond.set_exit.false": "Set as Entrance",
 
   "subtitle.lead_beyond.beep_ticket_vendor": "Ticket Vendor beeps",
   "subtitle.lead_beyond.beep_turnstile": "Turnstile beeps",
