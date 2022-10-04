@@ -4,6 +4,7 @@ import com.simibubi.create.content.contraptions.wrench.IWrenchable;
 import com.simibubi.create.content.contraptions.wrench.WrenchItem;
 import io.github.dovecotmc.leadbeyond.common.item.CardItem;
 import io.github.dovecotmc.leadbeyond.common.item.TicketItem;
+import io.github.dovecotmc.leadbeyond.common.item.Ticketable;
 import io.github.dovecotmc.leadbeyond.common.reg.BlockEntityReg;
 import io.github.dovecotmc.leadbeyond.common.reg.SoundReg;
 import net.minecraft.block.*;
@@ -83,6 +84,7 @@ public class TurnstileBlock extends BlockWithEntity
                     NbtCompound nbt = stack.getOrCreateSubNbt("ticketInfo");
                     if (!nbt.getBoolean("used")) {
                         nbt.putBoolean("used", true);
+                        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", true);
                         turnstile.setTimer(60);
                         world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
                         return ActionResult.SUCCESS;
@@ -91,15 +93,22 @@ public class TurnstileBlock extends BlockWithEntity
                     NbtCompound nbt = stack.getOrCreateSubNbt("cardInfo");
                     if (nbt.getLong("money") >= 100) {
                         nbt.putLong("money", nbt.getLong("money") - 100);
+                        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", true);
                         turnstile.setTimer(60);
                         world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
                         return ActionResult.SUCCESS;
                     }
                 }
-            } else if (!(stack.getItem() instanceof WrenchItem)) {
-                turnstile.setTimer(60);
-                world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
-                return ActionResult.SUCCESS;
+            } else {
+                if (stack.getItem() instanceof Ticketable) {
+                    NbtCompound nbt = stack.getOrCreateSubNbt("stationInfo");
+                    if (nbt.getBoolean("enteredStation")) {
+                        turnstile.setTimer(60);
+                        nbt.putBoolean("enteredStation", false);
+                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
+                        return ActionResult.SUCCESS;
+                    }
+                }
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);

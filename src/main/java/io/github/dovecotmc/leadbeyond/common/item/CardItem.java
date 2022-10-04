@@ -19,7 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class CardItem extends Item {
+public class CardItem extends Item
+        implements Ticketable {
     public CardItem(Settings settings) {
         super(settings);
     }
@@ -28,6 +29,7 @@ public class CardItem extends Item {
     public ItemStack getDefaultStack() {
         ItemStack stack = super.getDefaultStack();
         stack.getOrCreateSubNbt("cardInfo").putLong("money", 0);
+        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", false);
         return stack;
     }
 
