@@ -1,0 +1,9 @@
+{
+  "itemGroup.lead_beyond": "Lead Beyond",
+
+  "item.lead_beyond.card": "Card",
+  "item.lead_beyond.ticket": "Ticket",
+
+  "tooltip.lead_beyond.card.money": "Money: %s",
+  "tooltip.lead_beyond.ticket.used": "Used"
+}
