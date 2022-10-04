@@ -54,3 +54,10 @@ mandatory = true
 versionRange = "[1.18.2,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.lead_beyond]]
+modId = "create"
+mandatory = true
+versionRange = "[0.5,)"
+ordering = "AFTER"
+side = "BOTH"

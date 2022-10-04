@@ -19,7 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class TicketItem extends Item {
+public class TicketItem extends Item
+        implements Ticketable {
     public TicketItem(Settings settings) {
         super(settings);
     }
@@ -28,6 +29,7 @@ public class TicketItem extends Item {
     public ItemStack getDefaultStack() {
         ItemStack stack = super.getDefaultStack();
         stack.getOrCreateSubNbt("ticketInfo").putBoolean("used", false);
+        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", false);
         return stack;
     }
 
