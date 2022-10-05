@@ -1,7 +1,9 @@
-# 引向超越
+# 引向超越 | Lead Beyond
 
 鸽舍铁路的一个铁路主题的装饰~~和功能~~性模组。
 
+
+***注意：本模组正处于开发的极早阶段，拥有非常少量的内容，且release和代码资源可能存在巨大的时间差。请谨慎考虑是否要现在使用此模组。***
 ## 本文语言:
 [English](README_EN.md) | **简体中文**
 
@@ -30,5 +32,7 @@ LeadBeyond的售票系统加入了储值卡/单程票/闸机等交互内容
 
 ### 兼容性
 本模组需要机械动力(Create Mod)作为前置，当然也可以拿到MTR里用 ~~如果用得到的话~~ ，~~甚至还可以拿去给RTM用~~ ~~RTM没有1.18.2的好吧~~
+## 作者：
+[Peakstep](https://github.com/pkstDev)(代码/模组功能)和[Haruka](https://github.com/pkstDev) (美工)
 ## 加群gkd:
 [Discord群组](https://discord.gg/hvSZmxMVYU) 还有 [QQ群](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
