@@ -2,7 +2,7 @@
 
 A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway server.
 
-**Note: This mod is in the very early stages of development, has very little content, and there may be a significant time lag between release and code resources. Please consider carefully whether you want to use this mod now.**
+***Note: This mod is in the very early stages of development, has very little content, and there may be a significant time lag between release and code resources. Please consider carefully whether you want to use this mod now.***
 
 ## Switch Language:
 **English** | [简体中文](README.md)
