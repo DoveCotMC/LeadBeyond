@@ -6,7 +6,17 @@ A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway 
 **English** | [简体中文](README.md)
 
 ## Mod content:
-too lazy to translate, so do it yourself plz :)
+
+### Ticket System
+Lead Beyond has introduced interactive content like cards, tickets, turnstiles, etc.
+
+### Blocks
+Knowing how hard it is to decorate trains in such small room, we have added the following:
+
+*TODO: complete this part*
+
+## Compatibility
+This mod depends on Create to work. Though, it's also possible to use it with MTR (and maybe RTM if that mod updates to 1.18.2)
 
 ## Contact us:
 Join our [Discord](https://discord.gg/hvSZmxMVYU) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
