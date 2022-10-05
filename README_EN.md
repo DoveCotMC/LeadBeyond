@@ -27,7 +27,7 @@ Knowing how hard it is to decorate trains in such small room, we have added:
 - CR Like Train Destination sign[^6]
 - Passageway of two cars
 - The Auto Door in the passageway of CR 25T Coach
-- The Doors in the head/end of CR 25T Coach
+- The Isolation Doors of CR 25T Coach
 - Front/Side LED Screen
 - Front Escape Door
 - Headlights
