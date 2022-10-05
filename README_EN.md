@@ -10,7 +10,7 @@ A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway 
 
 ## Mod content:
 
-*Before we start, you should **know something about China Railway's rolling stocks or equipments[^0]**. Take a glance at footnotes if you have any trouble in understanding these elements.(Some need to be translated manually)*
+*Before we start, you should **know something about China Railway's rolling stocks or equipments[^0]**. Take a glance at footnotes if you have any trouble in understanding these elements. (Some need to be translated manually)*
 
 ### Ticket System
 Lead Beyond has introduced interactive content like cards, tickets, turnstiles, etc.
