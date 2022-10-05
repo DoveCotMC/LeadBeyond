@@ -1,6 +1,7 @@
 # 引向超越 | Lead Beyond
 
 鸽舍铁路的一个铁路主题的装饰~~和功能~~性模组。
+<img src="src/main/resources/icon.png" width = "200" height = "200" alt="Logo" align=right />
 
 
 ***注意：本模组正处于开发的极早阶段，拥有非常少量的内容，且release和代码资源可能存在巨大的时间差。请谨慎考虑是否要现在使用此模组。***
