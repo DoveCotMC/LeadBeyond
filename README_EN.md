@@ -20,5 +20,8 @@ Knowing how hard it is to decorate trains in such small room, we have added the 
 ## Compatibility
 This mod depends on Create to work. Though, it's also possible to use it with MTR (and maybe RTM if that mod updates to 1.18.2)
 
+## Credits
+[Peakstep](https://github.com/pkstDev) (Code) and [Hakura](https://github.com/radekemia) (Artworks)
+
 ## Contact us:
 Join our [Discord](https://discord.gg/hvSZmxMVYU) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
