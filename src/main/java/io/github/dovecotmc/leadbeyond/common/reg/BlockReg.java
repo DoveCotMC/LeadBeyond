@@ -1,6 +1,5 @@
 package io.github.dovecotmc.leadbeyond.common.reg;
 
-import com.simibubi.create.AllBlocks;
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
 import io.github.dovecotmc.leadbeyond.common.block.HorizontalCVSBlock;
 import io.github.dovecotmc.leadbeyond.common.block.LBSeatBlock;
@@ -9,7 +8,6 @@ import io.github.dovecotmc.leadbeyond.common.block.TurnstileBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraftforge.registries.DeferredRegister;
@@ -41,9 +39,9 @@ public class BlockReg {
     public static final RegistryObject<Block> TURNSTILE = BLOCKS.register("turnstile", () ->
             new TurnstileBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque()));
     public static final RegistryObject<Block> RZ_SEAT = BLOCKS.register("rz_seat", () ->
-            new LBSeatBlock(AbstractBlock.Settings.copy(AllBlocks.SEATS.get(DyeColor.BLUE).get())));
+            new LBSeatBlock(AbstractBlock.Settings.copy(Blocks.BLUE_BED)));
     public static final RegistryObject<Block> YZ_SEAT2 = BLOCKS.register("yz_seat2", () ->
-            new HorizontalCVSBlock(AbstractBlock.Settings.copy(AllBlocks.SEATS.get(DyeColor.BLUE).get()), state -> switch (state.get(HorizontalCVSBlock.FACING)) {
+            new HorizontalCVSBlock(AbstractBlock.Settings.copy(Blocks.BLUE_BED), state -> switch (state.get(HorizontalCVSBlock.FACING)) {
                 default -> VoxelShapes.fullCube();
                 case NORTH, SOUTH -> yzNsShape;
                 case WEST, EAST -> yzEwShape;
