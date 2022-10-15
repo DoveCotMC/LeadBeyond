@@ -6,13 +6,15 @@
 
   "block.lead_beyond.turnstile": "Turnstile",
   "block.lead_beyond.ticket_vendor": "Ticket Vendor",
+  "block.lead_beyond.rz_seat": "Soft Seat",
+  "block.lead_beyond.yz_seat2": "Hard Seat",
 
   "message.lead_beyond.set_exit.true": "Set as Exit",
   "message.lead_beyond.set_exit.false": "Set as Entrance",
 
-  "subtitle.lead_beyond.beep_ticket_vendor": "Ticket Vendor beeps",
-  "subtitle.lead_beyond.beep_turnstile": "Turnstile beeps",
-  "subtitle.lead_beyond.ticket_out": "Ticket Vendor issues a ticket",
+  "subtitles.lead_beyond.beep_ticket_vendor": "Ticket Vendor beeps",
+  "subtitles.lead_beyond.beep_turnstile": "Turnstile beeps",
+  "subtitles.lead_beyond.ticket_out": "Ticket Vendor issues a ticket",
 
   "tooltip.lead_beyond.card.money": "Money: %s",
   "tooltip.lead_beyond.ticket.used": "Used"

@@ -1,9 +1,9 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made with Blockbenchboombaka",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "Ticket Vendor",
-		"particle": "Ticket Vendor"
+		"0": "lead_beyond:block/ticket_vendor",
+		"particle": "lead_beyond:block/ticket_vendor"
 	},
 	"elements": [
 		{
@@ -44,8 +44,8 @@
 			}
 		},
 		{
-			"from": [-0.0001, 0, 0],
-			"to": [0.2499, 16, 16],
+			"from": [0.4999, 0, 0],
+			"to": [0.4999, 16, 16],
 			"faces": {
 				"north": {"uv": [3.5, 6.375, 3.53125, 8.375], "texture": "#0"},
 				"east": {"uv": [0, 4, 2, 6], "texture": "#0"},
@@ -56,8 +56,8 @@
 			}
 		},
 		{
-			"from": [15.75, 0, 0],
-			"to": [16, 16, 16],
+			"from": [15.5, 0, 0],
+			"to": [15.5, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [15.75, 0, 0]},
 			"faces": {
 				"north": {"uv": [3, 6.375, 3.03125, 8.375], "texture": "#0"},
@@ -68,5 +68,41 @@
 				"down": {"uv": [3.40625, 6.375, 3.375, 8.375], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"rotation": [0, 180, 0]
+		},
+		"fixed": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 0, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

@@ -6,13 +6,15 @@
 
   "block.lead_beyond.turnstile": "闸机",
   "block.lead_beyond.ticket_vendor": "售票机",
+  "block.lead_beyond.rz_seat": "软座",
+  "block.lead_beyond.yz_seat2": "硬座",
 
   "message.lead_beyond.set_exit.true": "已设置成出口",
   "message.lead_beyond.set_exit.false": "已设置成入口",
 
-  "subtitle.lead_beyond.beep_ticket_vendor": "售票机：哔——",
-  "subtitle.lead_beyond.beep_turnstile": "闸门：哔——",
-  "subtitle.lead_beyond.ticket_out": "售票机：出票",
+  "subtitles.lead_beyond.beep_ticket_vendor": "售票机：哔——",
+  "subtitles.lead_beyond.beep_turnstile": "闸机：哔——",
+  "subtitles.lead_beyond.ticket_out": "售票机：出票",
 
   "tooltip.lead_beyond.card.money": "金钱: %s",
   "tooltip.lead_beyond.ticket.used": "已使用"

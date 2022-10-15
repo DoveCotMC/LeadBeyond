@@ -1,9 +1,9 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made with Blockbenchboombaka",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "RZSeat",
-		"particle": "RZSeat"
+		"0": "lead_beyond:block/rz_seat",
+		"particle": "lead_beyond:block/rz_seat"
 	},
 	"elements": [
 		{
@@ -210,5 +210,42 @@
 				"down": {"uv": [7.5, 10.4375, 7.25, 10.5625], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, -1.5, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"rotation": [-112.5, 0, 0],
+			"translation": [0, 6, 4.5]
+		},
+		"fixed": {
+			"translation": [0, 0, -3.75],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

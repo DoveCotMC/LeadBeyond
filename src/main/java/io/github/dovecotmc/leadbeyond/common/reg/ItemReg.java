@@ -22,4 +22,8 @@ public class ItemReg {
             new BlockItem(BlockReg.TICKET_VENDOR.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
     public static final RegistryObject<Item> TURNSTILE = ITEM.register("turnstile", () ->
             new BlockItem(BlockReg.TURNSTILE.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
+    public static final RegistryObject<Item> RZ_SEAT = ITEM.register("rz_seat", () ->
+            new BlockItem(BlockReg.RZ_SEAT.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
+    public static final RegistryObject<Item> YZ_SEAT2 = ITEM.register("yz_seat2", () ->
+            new BlockItem(BlockReg.YZ_SEAT2.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
 }
