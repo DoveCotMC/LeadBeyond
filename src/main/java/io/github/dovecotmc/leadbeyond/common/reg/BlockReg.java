@@ -39,9 +39,9 @@ public class BlockReg {
     public static final RegistryObject<Block> TURNSTILE = BLOCKS.register("turnstile", () ->
             new TurnstileBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque()));
     public static final RegistryObject<Block> RZ_SEAT = BLOCKS.register("rz_seat", () ->
-            new LBSeatBlock(AbstractBlock.Settings.copy(Blocks.BLUE_BED)));
+            new LBSeatBlock(AbstractBlock.Settings.copy(Blocks.BLUE_WOOL)));
     public static final RegistryObject<Block> YZ_SEAT2 = BLOCKS.register("yz_seat2", () ->
-            new HorizontalCVSBlock(AbstractBlock.Settings.copy(Blocks.BLUE_BED), state -> switch (state.get(HorizontalCVSBlock.FACING)) {
+            new HorizontalCVSBlock(AbstractBlock.Settings.copy(Blocks.BLUE_WOOL), state -> switch (state.get(HorizontalCVSBlock.FACING)) {
                 default -> VoxelShapes.fullCube();
                 case NORTH, SOUTH -> yzNsShape;
                 case WEST, EAST -> yzEwShape;
