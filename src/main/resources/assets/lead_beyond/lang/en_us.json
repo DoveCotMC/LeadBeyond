@@ -8,6 +8,8 @@
   "block.lead_beyond.ticket_vendor": "Ticket Vendor",
   "block.lead_beyond.rz_seat": "Soft Seat",
   "block.lead_beyond.yz_seat2": "Hard Seat",
+  "block.lead_beyond.passway": "Passway",
+  "block.lead_beyond.yz_table": "Hard Seat Table",
 
   "message.lead_beyond.set_exit.true": "Set as Exit",
   "message.lead_beyond.set_exit.false": "Set as Entrance",

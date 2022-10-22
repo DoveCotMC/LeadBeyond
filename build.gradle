@@ -32,6 +32,9 @@ repositories {
     maven {
         url "https://maven.tterrag.com/"
     }
+    maven {
+        url "https://maven.shedaniel.me/"
+    }
 }
 
 dependencies {
@@ -68,6 +71,8 @@ dependencies {
     modImplementation "com.simibubi.create:Create:mc${project.create_version}"
     modImplementation "com.jozufozu.flywheel:Flywheel-Forge:${project.flywheel_version}"
     modImplementation "com.tterrag.registrate:Registrate:MC${project.minecraft_version}-${project.registrate_version}"
+
+    modImplementation include("me.shedaniel.cloth:cloth-config-forge:6.4.90")
 }
 
 processResources {

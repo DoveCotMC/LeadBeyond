@@ -1,10 +1,15 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
 import com.simibubi.create.content.contraptions.wrench.IWrenchable;
+import io.github.dovecotmc.leadbeyond.LeadBeyond;
+import io.github.dovecotmc.leadbeyond.common.Constants;
 import io.github.dovecotmc.leadbeyond.common.item.CardItem;
 import io.github.dovecotmc.leadbeyond.common.reg.ItemReg;
 import io.github.dovecotmc.leadbeyond.common.reg.SoundReg;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -60,8 +65,8 @@ public class TicketVendorBlock extends HorizontalFacingBlock
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) return ActionResult.SUCCESS;
-        if (player.getStackInHand(hand).isOf(Items.EMERALD)) {
-            player.getStackInHand(hand).decrement(1);
+        if (player.getStackInHand(hand).isOf(Constants.getCurrencyItem())) {
+            if (!player.isCreative()) player.getStackInHand(hand).decrement(1);
             if (getStackInOtherHand(player, hand).getItem() instanceof CardItem) {
                 world.playSound(null, pos, SoundReg.BEEP_TICKET_VENDOR.get(), SoundCategory.BLOCKS, 1f, 1f);
                 NbtCompound nbt = getStackInOtherHand(player, hand).getOrCreateSubNbt("cardInfo");

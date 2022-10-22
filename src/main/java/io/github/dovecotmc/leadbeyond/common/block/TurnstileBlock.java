@@ -1,7 +1,6 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
 import com.simibubi.create.content.contraptions.wrench.IWrenchable;
-import com.simibubi.create.content.contraptions.wrench.WrenchItem;
 import io.github.dovecotmc.leadbeyond.common.item.CardItem;
 import io.github.dovecotmc.leadbeyond.common.item.TicketItem;
 import io.github.dovecotmc.leadbeyond.common.item.Ticketable;

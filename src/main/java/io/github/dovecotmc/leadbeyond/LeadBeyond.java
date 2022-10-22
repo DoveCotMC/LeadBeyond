@@ -1,6 +1,12 @@
 package io.github.dovecotmc.leadbeyond;
 
-import io.github.dovecotmc.leadbeyond.common.reg.*;
+import io.github.dovecotmc.leadbeyond.common.config.LBConfig;
+import io.github.dovecotmc.leadbeyond.common.reg.BlockEntityReg;
+import io.github.dovecotmc.leadbeyond.common.reg.BlockReg;
+import io.github.dovecotmc.leadbeyond.common.reg.ItemReg;
+import io.github.dovecotmc.leadbeyond.common.reg.SoundReg;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +24,7 @@ import java.util.function.Consumer;
 public class LeadBeyond {
     public static final String MODID = "lead_beyond";
     public static final Logger LOGGER = LoggerFactory.getLogger("Lead Beyond");
+    public static LBConfig CONFIG;
 
     public LeadBeyond() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,6 +34,8 @@ public class LeadBeyond {
         BlockEntityReg.BLOCK_ENTITIES.register(eventBus);
         eventBus.addListener(this::commonSetup);
         eventBus.addListener(LeadBeyondClient::clientSetup);
+        AutoConfig.register(LBConfig.class, Toml4jConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(LBConfig.class).getConfig();
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("Initialized.");
     }

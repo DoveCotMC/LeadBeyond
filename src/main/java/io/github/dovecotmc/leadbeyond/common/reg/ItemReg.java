@@ -26,4 +26,8 @@ public class ItemReg {
             new BlockItem(BlockReg.RZ_SEAT.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
     public static final RegistryObject<Item> YZ_SEAT2 = ITEM.register("yz_seat2", () ->
             new BlockItem(BlockReg.YZ_SEAT2.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
+    public static final RegistryObject<Item> PASSWAY = ITEM.register("passway", () ->
+            new BlockItem(BlockReg.PASSWAY.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
+    public static final RegistryObject<Item> YZ_TABLE = ITEM.register("yz_table", () ->
+            new BlockItem(BlockReg.YZ_TABLE.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
 }
