@@ -1,19 +1,18 @@
 package io.github.dovecotmc.leadbeyond.common.reg;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
 import net.minecraft.sound.SoundEvent;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.util.registry.Registry;
 
 public class SoundReg {
-    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
-            LeadBeyond.MODID);
-
-    public static final RegistryObject<SoundEvent> BEEP_TICKET_VENDOR = SOUNDS.register("beep_ticket_vendor", () ->
+    public static final RegistryEntry<SoundEvent> BEEP_TICKET_VENDOR = LeadBeyond.REGISTRATE.get().simple("beep_ticket_vendor", Registry.SOUND_EVENT_KEY, () ->
             new SoundEvent(LeadBeyond.id("beep_ticket_vendor")));
-    public static final RegistryObject<SoundEvent> BEEP_TURNSTILE = SOUNDS.register("beep_turnstile", () ->
+    public static final RegistryEntry<SoundEvent> BEEP_TURNSTILE = LeadBeyond.REGISTRATE.get().simple("beep_turnstile", Registry.SOUND_EVENT_KEY, () ->
             new SoundEvent(LeadBeyond.id("beep_turnstile")));
-    public static final RegistryObject<SoundEvent> TICKET_OUT = SOUNDS.register("ticket_out", () ->
+    public static final RegistryEntry<SoundEvent> TICKET_OUT = LeadBeyond.REGISTRATE.get().simple("ticket_out", Registry.SOUND_EVENT_KEY, () ->
             new SoundEvent(LeadBeyond.id("ticket_out")));
+
+    public static void initialize() {
+    }
 }

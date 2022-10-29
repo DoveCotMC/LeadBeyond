@@ -1,8 +1,8 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
-import io.github.dovecotmc.leadbeyond.common.reg.BlockEntityReg;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -13,8 +13,8 @@ public class TurnstileBlockEntity extends BlockEntity {
     private int timer;
     public boolean exit;
 
-    public TurnstileBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityReg.TURNSTILE.get(), pos, state);
+    public TurnstileBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         this.timer = 0;
         this.exit = false;
     }

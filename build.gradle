@@ -68,9 +68,9 @@ dependencies {
     // at runtime, use the full JEI jar
     // modRuntimeOnly "mezz.jei:jei-1.18.2:${jei_version}"
 
-    modImplementation "com.simibubi.create:Create:mc${project.create_version}"
-    modImplementation "com.jozufozu.flywheel:Flywheel-Forge:${project.flywheel_version}"
-    modImplementation "com.tterrag.registrate:Registrate:MC${project.minecraft_version}-${project.registrate_version}"
+    modImplementation("com.simibubi.create:create-1.18.2:${project.create_version}:slim") { transitive = false }
+    modImplementation "com.jozufozu.flywheel:flywheel-forge-1.18.2:${project.flywheel_version}"
+    modImplementation include("com.tterrag.registrate:Registrate:MC${project.minecraft_version}-${project.registrate_version}")
 
     modImplementation include("me.shedaniel.cloth:cloth-config-forge:6.4.90")
 }

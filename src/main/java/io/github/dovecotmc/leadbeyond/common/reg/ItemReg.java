@@ -1,33 +1,19 @@
 package io.github.dovecotmc.leadbeyond.common.reg;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
 import io.github.dovecotmc.leadbeyond.common.item.CardItem;
 import io.github.dovecotmc.leadbeyond.common.item.LBItemGroup;
 import io.github.dovecotmc.leadbeyond.common.item.TicketItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ItemReg {
-    public static final DeferredRegister<Item> ITEM = DeferredRegister.create(ForgeRegistries.ITEMS,
-            LeadBeyond.MODID);
+    public static final RegistryEntry<CardItem> CARD = LeadBeyond.REGISTRATE.get().item("card", CardItem::new)
+            .properties(settings -> settings.group(LBItemGroup.INSTANCE).maxCount(1))
+            .register();
+    public static final RegistryEntry<TicketItem> TICKET = LeadBeyond.REGISTRATE.get().item("ticket", TicketItem::new)
+            .properties(settings -> settings.group(LBItemGroup.INSTANCE).maxCount(1))
+            .register();
 
-    public static final RegistryObject<Item> CARD = ITEM.register("card", () ->
-            new CardItem(new Item.Settings().group(LBItemGroup.INSTANCE).maxCount(1)));
-    public static final RegistryObject<Item> TICKET = ITEM.register("ticket", () ->
-            new TicketItem(new Item.Settings().group(LBItemGroup.INSTANCE).maxCount(1)));
-    public static final RegistryObject<Item> TICKET_VENDOR = ITEM.register("ticket_vendor", () ->
-            new BlockItem(BlockReg.TICKET_VENDOR.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
-    public static final RegistryObject<Item> TURNSTILE = ITEM.register("turnstile", () ->
-            new BlockItem(BlockReg.TURNSTILE.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
-    public static final RegistryObject<Item> RZ_SEAT = ITEM.register("rz_seat", () ->
-            new BlockItem(BlockReg.RZ_SEAT.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
-    public static final RegistryObject<Item> YZ_SEAT2 = ITEM.register("yz_seat2", () ->
-            new BlockItem(BlockReg.YZ_SEAT2.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
-    public static final RegistryObject<Item> PASSWAY = ITEM.register("passway", () ->
-            new BlockItem(BlockReg.PASSWAY.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
-    public static final RegistryObject<Item> YZ_TABLE = ITEM.register("yz_table", () ->
-            new BlockItem(BlockReg.YZ_TABLE.get(), new Item.Settings().group(LBItemGroup.INSTANCE)));
+    public static void initialize() {
+    }
 }

@@ -178,7 +178,7 @@ public class TurnstileBlock extends BlockWithEntity
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new TurnstileBlockEntity(pos, state);
+        return new TurnstileBlockEntity(BlockEntityReg.TURNSTILE.get(), pos, state);
     }
 
     @Nullable

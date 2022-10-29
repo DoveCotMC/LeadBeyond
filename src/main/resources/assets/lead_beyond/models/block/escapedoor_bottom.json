@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbenchboombaka",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "lead_beyond:block/escapedoor",
+		"particle": "lead_beyond:block/escapedoor"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [3, 16, 16],
+			"faces": {
+				"north": {"uv": [5.5, 0, 6, 4], "texture": "#0"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#0"},
+				"south": {"uv": [5.5, 4, 6, 8], "texture": "#0"},
+				"west": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"up": {"uv": [10, 0.5, 6, 0], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [10, 0.5, 6, 1], "rotation": 90, "texture": "#0"}
+			}
+		}
+	]
+}
