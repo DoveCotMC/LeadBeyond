@@ -1,0 +1,23 @@
+{
+  "itemGroup.lead_beyond": "引而越之",
+
+  "item.lead_beyond.card": "司南囊币简",
+  "item.lead_beyond.ticket": "驾凭",
+
+  "block.lead_beyond.turnstile": "栈扉",
+  "block.lead_beyond.ticket_vendor": "驾凭之市",
+  "block.lead_beyond.rz_seat": "柔席",
+  "block.lead_beyond.yz_seat2": "硬席",
+  "block.lead_beyond.passway": "车之廊庑",
+  "block.lead_beyond.yz_table": "硬席案",
+
+  "message.lead_beyond.set_exit.true": "即为出口矣",
+  "message.lead_beyond.set_exit.false": "即为入口矣",
+
+  "subtitles.lead_beyond.beep_ticket_vendor": "驾凭之市鸣乎：哔——",
+  "subtitles.lead_beyond.beep_turnstile": "栈扉鸣之：哔——",
+  "subtitles.lead_beyond.ticket_out": "驾凭之市：方出驾凭",
+
+  "tooltip.lead_beyond.card.money": "己囊之币: %s",
+  "tooltip.lead_beyond.ticket.used": "用毕"
+}
