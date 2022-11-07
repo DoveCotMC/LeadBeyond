@@ -42,7 +42,7 @@ At the same time there are some blocks you can use it outside：
 This mod depends on Create to work. Though, it's also possible to use it with MTR (and maybe RTM if that mod updates to 1.18.2)
 
 ## Credits
-[Peakstep](https://github.com/pkstDev) (Code) , [Hakura](https://github.com/radekemia) (Artworks) and [WillowKoishi](https://github.com/WillowKoishi) (Artworks)
+[Peakstep](https://github.com/pkstDev) (Code) , [Hakura](https://github.com/radekemia) (Artworks) and [WillowKoishi](https://github.com/WillowKoishi) (Code/Artworks)
 
 ## Contact us:
 Join our [Discord](https://discord.gg/hvSZmxMVYU) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
