@@ -59,7 +59,7 @@ public class BlockReg {
             .register();
     public static final RegistryEntry<SlidingDoorBlock> ESCAPEDOOR = LeadBeyond.REGISTRATE.get().block("escapedoor", SlidingDoorBlock::new)
             .transform(BuilderTransformers.slidingDoor("escape"))
-            .item().properties(settings -> settings.group(LBItemGroup.INSTANCE)).build()
+            //.item().properties(settings -> settings.group(LBItemGroup.INSTANCE)).build()
             .properties(settings -> AbstractBlock.Settings.of(Material.METAL).mapColor(MapColor.TERRACOTTA_CYAN).sounds(BlockSoundGroup.NETHERITE).nonOpaque())
             .blockEntity(SlidingDoorTileEntity::new).renderer(() -> SlidingDoorRenderer::new).build()
             .register();
