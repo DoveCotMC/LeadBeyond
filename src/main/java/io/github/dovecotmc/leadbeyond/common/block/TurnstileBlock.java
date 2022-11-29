@@ -1,12 +1,20 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.simibubi.create.content.contraptions.wrench.IWrenchable;
+
 import io.github.dovecotmc.leadbeyond.common.item.CardItem;
 import io.github.dovecotmc.leadbeyond.common.item.TicketItem;
 import io.github.dovecotmc.leadbeyond.common.item.Ticketable;
 import io.github.dovecotmc.leadbeyond.common.reg.BlockEntityReg;
 import io.github.dovecotmc.leadbeyond.common.reg.SoundReg;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -32,8 +40,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TurnstileBlock extends BlockWithEntity
         implements IWrenchable {
@@ -52,11 +58,13 @@ public class TurnstileBlock extends BlockWithEntity
         return BlockRenderType.MODEL;
     }
 
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
+    @Override
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
+    @Override
+	public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
@@ -73,6 +81,7 @@ public class TurnstileBlock extends BlockWithEntity
     }
 
     @Override
+	@SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) return ActionResult.SUCCESS;
         ItemStack stack = player.getStackInHand(hand);

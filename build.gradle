@@ -1,98 +1,74 @@
+
 plugins {
-    id "dev.architectury.loom" version "0.12.0-SNAPSHOT"
-    id "maven-publish"
+    id 'fabric-loom' version '1.0.9'
+    id 'maven-publish'
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version + "+mc" + project.minecraft_version
+version = project.mod_version
 group = project.maven_group
 
-loom {
-    // silentMojangMappingsLicense()
-
-    forge {
-        mixinConfigs = [
-                "lead_beyond.mixins.json"
-        ]
-        dataGen {
-            mod project.mod_id
-        }
-    }
-
-    launches {
-        data {
-            arg "--existing", file("src/main/resources").absolutePath
-        }
-    }
-}
-
 repositories {
+    maven { url = "https://hephaestus.dev/release" }
     maven {
-        url "https://maven.tterrag.com/"
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
+    maven { url = "https://cursemaven.com" }
+    maven { url = "https://maven.parchmentmc.org" }
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.tterrag.com/" }
+    maven { url = "https://storage.googleapis.com/devan-maven/" }
+    maven { url = "https://maven.shedaniel.me/" }
+    maven { url = "https://aperlambda.github.io/maven" }
+    maven { url = "https://ladysnake.jfrog.io/artifactory/mods" }
+    maven { url = "https://maven.kotlindiscord.com/repository/terraformers/" }
+    maven { url = "https://mvn.devos.one/releases/" }
+    maven { url = "https://mvn.devos.one/snapshots/" }
+    maven { url = "https://maven.terraformersmc.com/" }
+    maven { url = "https://maven.cafeteria.dev/releases/" }
+    maven { url = "https://jitpack.io/" }
+    maven { url = "https://maven.gegy.dev" }
+    maven { url = "https://dvs1.progwml6.com/files/maven/" }
+    maven { url = "https://modmaven.dev" }
     maven {
-        url "https://maven.shedaniel.me/"
+        url = "https://maven.jamieswhiteshirt.com/libs-release"
+        content {
+            includeGroup("com.jamieswhiteshirt")
+        }
     }
 }
 
 dependencies {
-    // to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-
-    // choose what mappings you want to use here
-    // leave this uncommented if you want to use
-    // mojang's official mappings, or feel free
-    // to add your own mappings here (how about
-    // mojmap layered with parchment, for example?)
-    // mappings loom.officialMojangMappings()
-
-    // uncomment this if you want to use yarn mappings
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // your forge dependency, this is **required** when using Forge Loom in forge mode!
-    forge "net.minecraftforge:forge:${project.forge_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}+${project.minecraft_version}"
+    modImplementation "com.simibubi.create:create-fabric-1.18.2:${project.create_version}+${project.minecraft_version}"
 
-    // additional dependencies can be specified using loom's regular format
-    // specifying a "mod" dependency (like modImplementation or modApi)
-    // will cause loom to remap the file to your specified mappings
-
-    // in this example, we'll be adding JEI as a dependency
-    // according to their developer example on GitHub
-    // see: https://github.com/mezz/JustEnoughItems/wiki/Getting-Started
-    // compile against the JEI API but do not include it at runtime
-    // don't worry about loom "not finding a forge mod" here,
-    // JEI's api just doesn't have any class with an @Mod annotation
-    // modCompileOnly "mezz.jei:jei-1.18.2:${jei_version}:api"
-    // at runtime, use the full JEI jar
-    // modRuntimeOnly "mezz.jei:jei-1.18.2:${jei_version}"
-
-    modImplementation("com.simibubi.create:create-1.18.2:${project.create_version}:slim") { transitive = false }
-    modImplementation "com.jozufozu.flywheel:flywheel-forge-1.18.2:${project.flywheel_version}"
-    modImplementation include("com.tterrag.registrate:Registrate:MC${project.minecraft_version}-${project.registrate_version}")
-
-    modImplementation include("me.shedaniel.cloth:cloth-config-forge:6.4.90")
+    modApi("me.shedaniel.cloth:cloth-config-fabric:6.4.90") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
 }
 
 processResources {
-    // define properties that can be used during resource processing
     inputs.property "version", project.version
 
-    // this will replace the property "${version}" in your mods.toml
-    // with the version you've defined in your gradle.properties
-    filesMatching("META-INF/mods.toml") {
+    filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
 }
 
-tasks.withType(JavaCompile) {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
-    options.encoding = "UTF-8"
-    options.release = 17
+tasks.withType(JavaCompile).configureEach {
+    // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+    it.options.release = 17
 }
 
 java {
@@ -103,17 +79,8 @@ java {
 }
 
 jar {
-    // add some additional metadata to the jar manifest
-    manifest {
-        attributes([
-                "Specification-Title"     : project.mod_id,
-                "Specification-Vendor"    : project.mod_author,
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : version,
-                "Implementation-Vendor"   : project.mod_author,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}"}
     }
 }
 
@@ -121,13 +88,7 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            // add all the jars that should be included when publishing to maven
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+            from components.java
         }
     }
 
