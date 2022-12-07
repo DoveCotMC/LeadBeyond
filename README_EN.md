@@ -45,7 +45,7 @@ This mod depends on Create to work. Though, it's also possible to use it with MT
 [Peakstep](https://github.com/pkstDev) (Code) , [Hakura](https://github.com/radekemia) (Artworks) and [WillowKoishi](https://github.com/WillowKoishi) (Code/Artworks)
 
 ## Contact us:
-Join our [Discord](https://discord.gg/hvSZmxMVYU) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
+Join our [Discord](https://discord.gg/pEunraZAgg) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
 
 [^0]:[Rail Transport in China in Wikipedia](https://en.wikipedia.org/wiki/Rail_transport_in_China)
 [^1]:[The CR 25T Coach in Wikipedia (Chinese)](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%93%81%E8%B7%AF25T%E5%9E%8B%E5%AE%A2%E8%BD%A6)
