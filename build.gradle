@@ -1,6 +1,8 @@
 plugins {
     id "dev.architectury.loom" version "0.12.0-SNAPSHOT"
     id "maven-publish"
+    id "io.github.juuxel.loom-quiltflower" version "1.+" // Quiltflower, a better decompiler
+	id "org.quiltmc.quilt-mappings-on-loom" version "4.2.0" // Quilt Mappings, for parameters and javadoc. Also hashed mojmap.
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
@@ -10,7 +12,7 @@ version = project.mod_version + "+mc" + project.minecraft_version
 group = project.maven_group
 
 loom {
-    // silentMojangMappingsLicense()
+    silentMojangMappingsLicense()
 
     forge {
         mixinConfigs = [
@@ -35,38 +37,18 @@ repositories {
     maven {
         url "https://maven.shedaniel.me/"
     }
+    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
 }
 
 dependencies {
-    // to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings(loom.layered {
+		it.addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.qm_version}:v2"))
+		it.parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+		it.officialMojangMappings { nameSyntheticMembers = false }
+	})
 
-    // choose what mappings you want to use here
-    // leave this uncommented if you want to use
-    // mojang's official mappings, or feel free
-    // to add your own mappings here (how about
-    // mojmap layered with parchment, for example?)
-    // mappings loom.officialMojangMappings()
-
-    // uncomment this if you want to use yarn mappings
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-
-    // your forge dependency, this is **required** when using Forge Loom in forge mode!
     forge "net.minecraftforge:forge:${project.forge_version}"
-
-    // additional dependencies can be specified using loom's regular format
-    // specifying a "mod" dependency (like modImplementation or modApi)
-    // will cause loom to remap the file to your specified mappings
-
-    // in this example, we'll be adding JEI as a dependency
-    // according to their developer example on GitHub
-    // see: https://github.com/mezz/JustEnoughItems/wiki/Getting-Started
-    // compile against the JEI API but do not include it at runtime
-    // don't worry about loom "not finding a forge mod" here,
-    // JEI's api just doesn't have any class with an @Mod annotation
-    // modCompileOnly "mezz.jei:jei-1.18.2:${jei_version}:api"
-    // at runtime, use the full JEI jar
-    // modRuntimeOnly "mezz.jei:jei-1.18.2:${jei_version}"
 
     modImplementation("com.simibubi.create:create-1.18.2:${project.create_version}:slim") { transitive = false }
     modImplementation "com.jozufozu.flywheel:flywheel-forge-1.18.2:${project.flywheel_version}"

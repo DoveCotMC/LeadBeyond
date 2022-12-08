@@ -5,7 +5,7 @@ import io.github.dovecotmc.leadbeyond.common.config.LBConfig;
 import io.github.dovecotmc.leadbeyond.common.reg.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -41,8 +41,8 @@ public class LeadBeyond {
     public void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    public static @NotNull Identifier id(String name) {
-        return new Identifier(MODID, name);
+    public static @NotNull ResourceLocation id(String name) {
+        return new ResourceLocation(MODID, name);
     }
 
     public static boolean isDevelopment() {

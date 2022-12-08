@@ -1,65 +1,65 @@
 package io.github.dovecotmc.leadbeyond.common.item;
 
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 
 public class CardItem extends Item
         implements Ticketable {
-    public CardItem(Settings settings) {
+    public CardItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public ItemStack getDefaultStack() {
-        ItemStack stack = super.getDefaultStack();
-        stack.getOrCreateSubNbt("cardInfo").putLong("money", 0);
-        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", false);
+    public ItemStack getDefaultInstance() {
+        ItemStack stack = super.getDefaultInstance();
+        stack.getOrCreateTagElement("cardInfo").putLong("money", 0);
+        stack.getOrCreateTagElement("stationInfo").putBoolean("enteredStation", false);
         return stack;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        NbtCompound nbt = stack.getSubNbt("cardInfo");
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+        CompoundTag nbt = stack.getTagElement("cardInfo");
         if (nbt != null) {
-            tooltip.add(new TranslatableText("tooltip.lead_beyond.card.money", nbt.getLong("money"))
-                    .formatted(Formatting.YELLOW));
+            tooltip.add(new TranslatableComponent("tooltip.lead_beyond.card.money", nbt.getLong("money"))
+                    .withStyle(ChatFormatting.YELLOW));
         }
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        if (context.getWorld().isClient()) return ActionResult.PASS;
-        AtomicReference<ActionResult> result = new AtomicReference<>(ActionResult.PASS);
+    public InteractionResult useOn(UseOnContext context) {
+        if (context.getLevel().isClientSide()) return InteractionResult.PASS;
+        AtomicReference<InteractionResult> result = new AtomicReference<>(InteractionResult.PASS);
         LeadBeyond.onlyDev(context1 -> {
-            if (context1.getWorld().getBlockState(context1.getBlockPos()).isOf(Blocks.EMERALD_BLOCK)) {
-                NbtCompound nbt = context1.getStack().getOrCreateSubNbt("cardInfo");
+            if (context1.getLevel().getBlockState(context1.getClickedPos()).is(Blocks.EMERALD_BLOCK)) {
+                CompoundTag nbt = context1.getItemInHand().getOrCreateTagElement("cardInfo");
                 nbt.putLong("money", nbt.getLong("money") + 114514);
-                result.set(ActionResult.SUCCESS);
+                result.set(InteractionResult.SUCCESS);
             }
         }, context);
         return result.get();
     }
 
     @Override
-    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        if (this.isIn(group)) {
-            stacks.add(getDefaultStack());
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks) {
+        if (this.allowdedIn(group)) {
+            stacks.add(getDefaultInstance());
         }
     }
 }

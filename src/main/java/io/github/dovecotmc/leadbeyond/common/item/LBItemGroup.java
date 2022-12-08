@@ -2,14 +2,15 @@ package io.github.dovecotmc.leadbeyond.common.item;
 
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
 import io.github.dovecotmc.leadbeyond.common.reg.ItemReg;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class LBItemGroup {
-    public static final ItemGroup INSTANCE = new ItemGroup(LeadBeyond.MODID) {
+    public static final CreativeModeTab INSTANCE = new CreativeModeTab(LeadBeyond.MODID) {
         @Override
-        public ItemStack createIcon() {
-            return ItemReg.TICKET.get().getDefaultStack();
+        public @NotNull ItemStack makeIcon() {
+            return ItemReg.TICKET.get().getDefaultInstance();
         }
     };
 }

@@ -6,184 +6,184 @@ import io.github.dovecotmc.leadbeyond.common.item.TicketItem;
 import io.github.dovecotmc.leadbeyond.common.item.Ticketable;
 import io.github.dovecotmc.leadbeyond.common.reg.BlockEntityReg;
 import io.github.dovecotmc.leadbeyond.common.reg.SoundReg;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TurnstileBlock extends BlockWithEntity
+public class TurnstileBlock extends BaseEntityBlock
         implements IWrenchable {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final BooleanProperty OPEN = BooleanProperty.of("open");
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    public TurnstileBlock(Settings arg) {
+    public TurnstileBlock(Properties arg) {
         super(arg);
-        setDefaultState(this.stateManager.getDefaultState()
-                .with(FACING, Direction.NORTH)
-                .with(OPEN, false));
+        registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(OPEN, false));
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
         stateManager.add(FACING).add(OPEN);
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState()
-                .with(FACING, ctx.getPlayerFacing().getOpposite())
-                .with(OPEN, false);
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState()
+                .setValue(FACING, ctx.getHorizontalDirection().getOpposite())
+                .setValue(OPEN, false);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient()) return ActionResult.SUCCESS;
-        ItemStack stack = player.getStackInHand(hand);
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (world.isClientSide()) return InteractionResult.SUCCESS;
+        ItemStack stack = player.getItemInHand(hand);
         BlockEntity be = world.getBlockEntity(pos);
         if (be instanceof TurnstileBlockEntity turnstile) {
             if (!turnstile.exit) {
                 if (stack.getItem() instanceof TicketItem) {
-                    NbtCompound nbt = stack.getOrCreateSubNbt("ticketInfo");
+                    CompoundTag nbt = stack.getOrCreateTagElement("ticketInfo");
                     if (!nbt.getBoolean("used")) {
                         nbt.putBoolean("used", true);
-                        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", true);
+                        stack.getOrCreateTagElement("stationInfo").putBoolean("enteredStation", true);
                         turnstile.setTimer(60);
-                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
-                        return ActionResult.SUCCESS;
+                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundSource.BLOCKS, 1f, 1f);
+                        return InteractionResult.SUCCESS;
                     }
                 } else if (stack.getItem() instanceof CardItem) {
-                    NbtCompound nbt = stack.getOrCreateSubNbt("cardInfo");
+                    CompoundTag nbt = stack.getOrCreateTagElement("cardInfo");
                     if (nbt.getLong("money") >= 100) {
                         nbt.putLong("money", nbt.getLong("money") - 100);
-                        stack.getOrCreateSubNbt("stationInfo").putBoolean("enteredStation", true);
+                        stack.getOrCreateTagElement("stationInfo").putBoolean("enteredStation", true);
                         turnstile.setTimer(60);
-                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
-                        return ActionResult.SUCCESS;
+                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundSource.BLOCKS, 1f, 1f);
+                        return InteractionResult.SUCCESS;
                     }
                 }
             } else {
                 if (stack.getItem() instanceof Ticketable) {
-                    NbtCompound nbt = stack.getOrCreateSubNbt("stationInfo");
+                    CompoundTag nbt = stack.getOrCreateTagElement("stationInfo");
                     if (nbt.getBoolean("enteredStation")) {
                         turnstile.setTimer(60);
                         nbt.putBoolean("enteredStation", false);
-                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundCategory.BLOCKS, 1f, 1f);
-                        return ActionResult.SUCCESS;
+                        world.playSound(null, pos, SoundReg.BEEP_TURNSTILE.get(), SoundSource.BLOCKS, 1f, 1f);
+                        return InteractionResult.SUCCESS;
                     }
                 }
             }
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
-    public ActionResult onWrenched(BlockState state, @NotNull ItemUsageContext context) {
-        World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
+    public InteractionResult onWrenched(BlockState state, @NotNull UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
         if (player != null) {
-            BlockEntity be = world.getBlockEntity(context.getBlockPos());
+            BlockEntity be = world.getBlockEntity(context.getClickedPos());
             if (be instanceof TurnstileBlockEntity turnstile) {
                 turnstile.exit = !turnstile.exit;
-                player.sendMessage(new TranslatableText("message.lead_beyond.set_exit." + turnstile.exit), true);
-                return ActionResult.SUCCESS;
+                player.displayClientMessage(new TranslatableComponent("message.lead_beyond.set_exit." + turnstile.exit), true);
+                return InteractionResult.SUCCESS;
             }
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        boolean open = state.get(OPEN);
-        VoxelShape nsBarrier = Block.createCuboidShape(0, 0, 6, 16, 24, 10);
-        VoxelShape ewBarrier = Block.createCuboidShape(6, 0, 0, 10, 24, 16);
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        Direction dir = state.getValue(FACING);
+        boolean open = state.getValue(OPEN);
+        VoxelShape nsBarrier = Block.box(0, 0, 6, 16, 24, 10);
+        VoxelShape ewBarrier = Block.box(6, 0, 0, 10, 24, 16);
         return switch (dir) {
-            case SOUTH -> open ? VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 3.5, 14, 16),
-                    Block.createCuboidShape(15, 0, 0, 16, 14, 16))
-                    : VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 3.5, 24, 16),
-                    Block.createCuboidShape(15, 0, 0, 16, 24, 16),
+            case SOUTH -> open ? Shapes.or(Block.box(0, 0, 0, 3.5, 14, 16),
+                    Block.box(15, 0, 0, 16, 14, 16))
+                    : Shapes.or(Block.box(0, 0, 0, 3.5, 24, 16),
+                    Block.box(15, 0, 0, 16, 24, 16),
                     nsBarrier);
-            case NORTH -> open ? VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 1, 14, 16),
-                    Block.createCuboidShape(12.5, 0, 0, 16, 14, 16))
-                    : VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 1, 24, 16),
-                    Block.createCuboidShape(12.5, 0, 0, 16, 24, 16),
+            case NORTH -> open ? Shapes.or(Block.box(0, 0, 0, 1, 14, 16),
+                    Block.box(12.5, 0, 0, 16, 14, 16))
+                    : Shapes.or(Block.box(0, 0, 0, 1, 24, 16),
+                    Block.box(12.5, 0, 0, 16, 24, 16),
                     nsBarrier);
-            case EAST -> open ? VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 14, 1),
-                    Block.createCuboidShape(0, 0, 12.5, 16, 14, 16))
-                    : VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 24, 1),
-                    Block.createCuboidShape(0, 0, 12.5, 16, 24, 16),
+            case EAST -> open ? Shapes.or(Block.box(0, 0, 0, 16, 14, 1),
+                    Block.box(0, 0, 12.5, 16, 14, 16))
+                    : Shapes.or(Block.box(0, 0, 0, 16, 24, 1),
+                    Block.box(0, 0, 12.5, 16, 24, 16),
                     ewBarrier);
-            case WEST -> open ? VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 14, 3.5),
-                    Block.createCuboidShape(0, 0, 15, 16, 14, 16))
-                    : VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 24, 3.5),
-                    Block.createCuboidShape(0, 0, 15, 16, 24, 16),
+            case WEST -> open ? Shapes.or(Block.box(0, 0, 0, 16, 14, 3.5),
+                    Block.box(0, 0, 15, 16, 14, 16))
+                    : Shapes.or(Block.box(0, 0, 0, 16, 24, 3.5),
+                    Block.box(0, 0, 15, 16, 24, 16),
                     ewBarrier);
-            default -> VoxelShapes.fullCube();
+            default -> Shapes.block();
         };
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
-        Direction dir = state.get(FACING);
+    public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ctx) {
+        Direction dir = state.getValue(FACING);
         return switch (dir) {
-            case SOUTH -> VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 3.5, 14, 16),
-                    Block.createCuboidShape(15, 0, 0, 16, 14, 16));
-            case NORTH -> VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 1, 14, 16),
-                    Block.createCuboidShape(12.5, 0, 0, 16, 14, 16));
-            case EAST -> VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 14, 1),
-                    Block.createCuboidShape(0, 0, 12.5, 16, 14, 16));
-            case WEST -> VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 16, 14, 3.5),
-                    Block.createCuboidShape(0, 0, 15, 16, 14, 16));
-            default -> VoxelShapes.fullCube();
+            case SOUTH -> Shapes.or(Block.box(0, 0, 0, 3.5, 14, 16),
+                    Block.box(15, 0, 0, 16, 14, 16));
+            case NORTH -> Shapes.or(Block.box(0, 0, 0, 1, 14, 16),
+                    Block.box(12.5, 0, 0, 16, 14, 16));
+            case EAST -> Shapes.or(Block.box(0, 0, 0, 16, 14, 1),
+                    Block.box(0, 0, 12.5, 16, 14, 16));
+            case WEST -> Shapes.or(Block.box(0, 0, 0, 16, 14, 3.5),
+                    Block.box(0, 0, 15, 16, 14, 16));
+            default -> Shapes.block();
         };
     }
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new TurnstileBlockEntity(BlockEntityReg.TURNSTILE.get(), pos, state);
     }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntityReg.TURNSTILE.get(), TurnstileBlockEntity::tick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+        return createTickerHelper(type, BlockEntityReg.TURNSTILE.get(), TurnstileBlockEntity::tick);
     }
 }

@@ -1,13 +1,13 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class TurnstileBlockEntity extends BlockEntity {
     private int timer;
@@ -24,33 +24,33 @@ public class TurnstileBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
+    public void load(CompoundTag nbt) {
         this.timer = nbt.getInt("timer");
         this.exit = nbt.getBoolean("exit");
-        super.readNbt(nbt);
+        super.load(nbt);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void saveAdditional(CompoundTag nbt) {
         nbt.putInt("timer", this.timer);
         nbt.putBoolean("exit", this.exit);
-        super.writeNbt(nbt);
+        super.saveAdditional(nbt);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, TurnstileBlockEntity be) {
-        if (world.isClient()) return;
+    public static void tick(Level world, BlockPos pos, BlockState state, TurnstileBlockEntity be) {
+        if (world.isClientSide()) return;
         if (be.timer > 0) {
-            if (!state.get(TurnstileBlock.OPEN)) {
-                world.playSound(null, pos, SoundEvents.BLOCK_IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1f, 1f);
-                world.setBlockState(pos, state.with(TurnstileBlock.OPEN, true));
+            if (!state.getValue(TurnstileBlock.OPEN)) {
+                world.playSound(null, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1f, 1f);
+                world.setBlockAndUpdate(pos, state.setValue(TurnstileBlock.OPEN, true));
             }
             be.timer--;
         } else {
-            if (state.get(TurnstileBlock.OPEN)) {
-                world.playSound(null, pos, SoundEvents.BLOCK_IRON_DOOR_CLOSE, SoundCategory.BLOCKS, 1f, 1f);
-                world.setBlockState(pos, state.with(TurnstileBlock.OPEN, false));
+            if (state.getValue(TurnstileBlock.OPEN)) {
+                world.playSound(null, pos, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 1f, 1f);
+                world.setBlockAndUpdate(pos, state.setValue(TurnstileBlock.OPEN, false));
             }
         }
-        be.markDirty();
+        be.setChanged();
     }
 }

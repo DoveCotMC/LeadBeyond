@@ -1,29 +1,28 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-
 import java.util.function.Function;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CustomVoxelShapeBlock extends Block {
     private final Function<BlockState, VoxelShape> shape;
 
-    public CustomVoxelShapeBlock(Settings settings, Function<BlockState, VoxelShape> shape) {
+    public CustomVoxelShapeBlock(Properties settings, Function<BlockState, VoxelShape> shape) {
         super(settings);
         this.shape = shape;
     }
 
-    public CustomVoxelShapeBlock(Settings settings, VoxelShape shape) {
+    public CustomVoxelShapeBlock(Properties settings, VoxelShape shape) {
         super(settings);
         this.shape = (state -> shape);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return shape.apply(state);
     }
 }
