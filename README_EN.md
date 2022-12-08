@@ -3,7 +3,7 @@
 A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway server.
 <img src="src/main/resources/icon.png" width = "200" height = "200" alt="Logo" align=right />
 
-***Note: This mod is at the very early stages of development, with almost NOTHING, and may have a SIGNIFICANT TIME LAG between release and code resources. Please consider carefully whether you decide to use this mod NOW.***
+***Note: This mod is at the very early stages of development and may have a SIGNIFICANT TIME LAG between release and code resources. Please consider carefully whether you decide to use this mod NOW.***
 
 ## Switch Language:
 **English** | [简体中文](README.md)
@@ -13,7 +13,8 @@ A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway 
 *Before we start, you should **know something about China Railway's rolling stocks or equipments[^0]**. Take a glance at footnotes if you have any trouble in understanding these elements. (Some need to be translated manually)*
 
 ### Ticket System
-Lead Beyond has introduced interactive content like cards, tickets, turnstiles, etc.
+Lead Beyond has introduced interactive content like cards, tickets, turnstiles, etc.  
+We will also introduce TRS System and allow you to buy counted tickets manually soon.
 
 ### Blocks
 Knowing how hard it is to decorate trains in such small room, we have added:
@@ -30,8 +31,6 @@ Knowing how hard it is to decorate trains in such small room, we have added:
 - The Isolation Doors of CR 25T Coach
 - Front/Side LED Screen
 - Front Escape Door
-- Headlights
-- Train Doors
 - Currently that's all.
 
 At the same time there are some blocks you can use it outside：
@@ -45,7 +44,7 @@ This mod depends on Create to work. Though, it's also possible to use it with MT
 [Peakstep](https://github.com/pkstDev) (Code) , [Hakura](https://github.com/radekemia) (Artworks) and [WillowKoishi](https://github.com/WillowKoishi) (Code/Artworks)
 
 ## Contact us:
-Join our [Discord](https://discord.gg/HnWwDprPSr) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
+Join our [Discord](https://discord.gg/vXV77Wgj) or [QQ Group](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
 
 [^0]:[Rail Transport in China in Wikipedia](https://en.wikipedia.org/wiki/Rail_transport_in_China)
 [^1]:[The CR 25T Coach in Wikipedia (Chinese)](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%93%81%E8%B7%AF25T%E5%9E%8B%E5%AE%A2%E8%BD%A6)
