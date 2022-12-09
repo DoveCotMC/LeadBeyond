@@ -39,4 +39,4 @@ LeadBeyond的售票系统加入了储值卡/单程票/闸机等交互内容。
 ## 作者：
 [Peakstep](https://github.com/pkstDev) (代码/模组功能)、[Haruka](https://github.com/radekemia) (美工/策划) 和 [WillowKoishi](https://github.com/WillowKoishi) (美工/策划/代码)
 ## 加群gkd:
-[Discord群组](https://discord.gg/vXV77Wgj) 还有 [QQ群](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
+[Discord群组](https://discord.gg/HnWwDprPSr) 还有 [QQ群](https://jq.qq.com/?_wv=1027&k=QCpaGWUY)!
