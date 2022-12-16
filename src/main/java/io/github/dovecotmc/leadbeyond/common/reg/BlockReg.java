@@ -34,6 +34,7 @@ public class BlockReg {
             .item().properties(settings -> settings.tab(LBItemGroup.INSTANCE)).build()
             .properties(settings -> BlockBehaviour.Properties.copy(Blocks.BLUE_WOOL).noOcclusion())
             .register();
+    /*
     public static final RegistryEntry<HorizontalCVSBlock> PASSWAY = LeadBeyond.REGISTRATE.get().block("passway", settings ->
             new HorizontalCVSBlock(settings, state -> switch (state.getValue(HorizontalCVSBlock.FACING)) {
                 default -> Shapes.block();
@@ -43,6 +44,7 @@ public class BlockReg {
             .item().properties(settings -> settings.tab(LBItemGroup.INSTANCE)).build()
             .properties(settings -> BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
             .register();
+    */
     public static final RegistryEntry<DirAwareHorizontalCVSBlock> YZ_TABLE = LeadBeyond.REGISTRATE.get().block("yz_table", settings ->
             new DirAwareHorizontalCVSBlock(settings, state -> switch (state.getValue(HorizontalCVSBlock.FACING)) {
                 default -> Shapes.block();
