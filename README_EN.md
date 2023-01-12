@@ -5,6 +5,8 @@ A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway 
 
 ***Note: This mod is at the very early stages of development and may have a SIGNIFICANT TIME LAG between release and code resources. Please consider carefully whether you decide to use this mod NOW.***
 
+***You can go to [GitHub Actions](https://github.com/DoveCotMC/LeadBeyond/actions) for development builds.***
+
 ## Switch Language:
 **English** | [简体中文](README.md)
 
@@ -12,7 +14,7 @@ A railway-themed decoration ~~or a little functional?~~ mod for Dovecot railway 
 
 *Before we start, you should **know something about China Railway's rolling stocks or equipments[^0]**. Take a glance at footnotes if you have any trouble in understanding these elements. (Some need to be translated manually)*
 
-### Ticket System
+### Ticketing System
 Lead Beyond has introduced interactive content like cards, tickets, turnstiles, etc.  
 We will also introduce TRS System and allow you to buy counted tickets manually soon.
 
@@ -31,11 +33,18 @@ Knowing how hard it is to decorate trains in such small room, we have added:
 - The Isolation Doors of CR 25T Coach
 - Front/Side LED Screen
 - Front Escape Door
-- Currently that's all.
+- Currently, that's all.
 
 At the same time there are some blocks you can use it outside：
 - The green bars along the CR Lines[^7]
-- Currently that's all, again.
+- Currently, that's all, again.
+
+### Planned New Features in 0.2.0:
+- MTR-like new station management system while expanding its interaction with Create's own station system.
+- Redesign the ticketing system
+- Train route map generated via train schedules
+- New and compact display screens to replace Create's ones
+- Completely move the project structure to use Architectury
 
 ## Compatibility
 This mod depends on Create to work. Though, it's also possible to use it with MTR (and maybe RTM if that mod updates to 1.18.2)
