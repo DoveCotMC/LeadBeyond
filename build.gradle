@@ -2,7 +2,6 @@ plugins {
     id "dev.architectury.loom" version "0.12.0-SNAPSHOT"
     id "maven-publish"
     id "io.github.juuxel.loom-quiltflower" version "1.+" // Quiltflower, a better decompiler
-	id "org.quiltmc.quilt-mappings-on-loom" version "4.2.0" // Quilt Mappings, for parameters and javadoc. Also hashed mojmap.
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
@@ -37,18 +36,23 @@ loom {
 
 repositories {
     maven {
-        url "https://maven.tterrag.com/"
+        url = "https://maven.tterrag.com/"
     }
     maven {
-        url "https://maven.shedaniel.me/"
+        url = "https://maven.shedaniel.me/"
     }
-    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+    maven {
+        url = "https://maven.quiltmc.org/repository/release"
+    }
+    maven {
+        url = "https://maven.parchmentmc.org"
+    }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings(loom.layered {
-        // it.addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.qm_version}:v2"))
+        it.mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.qm_version}:intermediary-v2")
 		it.parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
 		it.officialMojangMappings { nameSyntheticMembers = false }
 	})

@@ -51,4 +51,12 @@ public class Pos2i {
         int y = sub.getInt("y");
         return new Pos2i(x, y);
     }
+
+    public static boolean isInRange(Pos2i from, Pos2i to, int x, int y) {
+        int biggerRangeX = Math.max(from.getX(), to.getX());
+        int smallerRangeX = Math.min(from.getX(), to.getX());
+        int biggerRangeY = Math.max(from.getY(), to.getY());
+        int smallerRangeY = Math.min(from.getY(), to.getY());
+        return (x >= smallerRangeX && x <= biggerRangeX) && (y >= smallerRangeY && y <= biggerRangeY);
+    }
 }

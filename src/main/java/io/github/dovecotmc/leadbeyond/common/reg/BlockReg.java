@@ -21,6 +21,10 @@ public class BlockReg {
             .item().properties(settings -> settings.tab(LBItemGroup.INSTANCE)).build()
             .properties(settings -> BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
             .register();
+    public static final RegistryEntry<InnerLEDBlock> INNER_LED = LeadBeyond.REGISTRATE.get().block("in_led", InnerLEDBlock::new)
+            .item().properties(settings -> settings.tab(LBItemGroup.INSTANCE)).build()
+            .properties(settings -> BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
+            .register();
     public static final RegistryEntry<LBSeatBlock> RZ_SEAT = LeadBeyond.REGISTRATE.get().block("rz_seat", LBSeatBlock::new)
             .item().properties(settings -> settings.tab(LBItemGroup.INSTANCE)).build()
             .properties(settings -> BlockBehaviour.Properties.copy(Blocks.BLUE_WOOL).noOcclusion())

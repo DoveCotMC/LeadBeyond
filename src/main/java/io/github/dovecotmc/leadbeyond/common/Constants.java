@@ -8,7 +8,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class Constants {
+public final class Constants {
     public static final VoxelShape YZ_NS_SHAPE = Shapes.or(Shapes.box(0.125, 0, 0.5625, 0.1875, 0.25, 0.8125),
             Shapes.box(0.125, 0, 0.1875, 0.1875, 0.25, 0.4375),
             Shapes.box(0.125, 0, 0.1875, 0.1875, 0.25, 0.4375),

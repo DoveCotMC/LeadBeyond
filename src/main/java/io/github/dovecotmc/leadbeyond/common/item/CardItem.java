@@ -1,6 +1,7 @@
 package io.github.dovecotmc.leadbeyond.common.item;
 
 import io.github.dovecotmc.leadbeyond.LeadBeyond;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class CardItem extends Item
     }
 
     @Override
-    public ItemStack getDefaultInstance() {
+    public @NotNull ItemStack getDefaultInstance() {
         ItemStack stack = super.getDefaultInstance();
         stack.getOrCreateTagElement("cardInfo").putLong("money", 0);
         stack.getOrCreateTagElement("stationInfo").putBoolean("enteredStation", false);
@@ -34,7 +35,7 @@ public class CardItem extends Item
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag context) {
         CompoundTag nbt = stack.getTagElement("cardInfo");
         if (nbt != null) {
             tooltip.add(new TranslatableComponent("tooltip.lead_beyond.card.money", nbt.getLong("money"))
