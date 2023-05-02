@@ -2,6 +2,7 @@ package io.github.dovecotmc.leadbeyond;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.dovecotmc.leadbeyond.client.render.block.InnerLEDBlockEntityRenderer;
+import io.github.dovecotmc.leadbeyond.common.compat.handler.CompatHandler;
 import io.github.dovecotmc.leadbeyond.common.config.LBConfig;
 import io.github.dovecotmc.leadbeyond.common.reg.*;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -38,6 +39,7 @@ public final class LeadBeyond {
         SoundReg.initialize();
         AutoConfig.register(LBConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(LBConfig.class).getConfig();
+        CompatHandler.initialize();
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("Initialized.");
     }
