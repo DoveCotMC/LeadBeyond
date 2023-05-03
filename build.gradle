@@ -47,20 +47,24 @@ repositories {
     maven {
         url = "https://maven.parchmentmc.org"
     }
+    maven {
+        url "https://maven.nova-committee.cn/releases"
+    }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings(loom.layered {
         it.mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.qm_version}:intermediary-v2")
-		it.parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
-		it.officialMojangMappings { nameSyntheticMembers = false }
-	})
+        it.parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+        it.officialMojangMappings { nameSyntheticMembers = false }
+    })
 
     forge "net.minecraftforge:forge:${project.forge_version}"
 
     modImplementation("com.simibubi.create:create-1.18.2:${project.create_version}:slim") { transitive = false }
     modImplementation "com.jozufozu.flywheel:flywheel-forge-1.18.2:${project.flywheel_version}"
+    modImplementation("committee.nova.sittable.forge:sittable-1.18.2:1.0.0.0") { transitive = false }
     modImplementation include("com.tterrag.registrate:Registrate:MC${project.minecraft_version}-${project.registrate_version}")
 
     modImplementation include("me.shedaniel.cloth:cloth-config-forge:6.4.90")
