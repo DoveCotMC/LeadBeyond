@@ -1,6 +1,6 @@
 package io.github.dovecotmc.leadbeyond.common.block;
 
-import com.simibubi.create.content.contraptions.components.actors.SeatBlock;
+import com.simibubi.create.content.contraptions.actors.seat.SeatBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
@@ -20,21 +20,24 @@ import org.jetbrains.annotations.NotNull;
 
 public class LBSeatBlock extends SeatBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private final VoxelShape northShape;
-    private final VoxelShape southShape;
-    private final VoxelShape westShape;
-    private final VoxelShape eastShape;
+    private static final VoxelShape northShape;
+    private static final VoxelShape southShape;
+    private static final VoxelShape westShape;
+    private static final VoxelShape eastShape;
 
     public LBSeatBlock(@NotNull Properties settings) {
         super(settings.noOcclusion(), DyeColor.BLUE, true);
         // Preventing lag
-        this.northShape = makeNorthShape();
-        this.southShape = makeSouthShape();
-        this.westShape = makeWestShape();
-        this.eastShape = makeEastShape();
         registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false));
+    }
+
+    static {
+        northShape = makeNorthShape();
+        southShape = makeSouthShape();
+        westShape = makeWestShape();
+        eastShape = makeEastShape();
     }
 
     @Override
